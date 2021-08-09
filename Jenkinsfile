@@ -1,19 +1,17 @@
 pipeline {
   agent {
-    docker { image 'node:10-alpine' }
+    docker { 
+      image 'node:12.16.2'
+    } 
   }
   stages {
-    stage('Restore') {
-        steps {
-            sh 'npm install'
-        }
-    }
     stage('Build') {
-        steps {
-            sh 'npm run-script build'
-        }
+      steps {
+        sh 'node --version'
+        sh 'npm install'
+        sh 'npm run build'
+      }
     }
-
     /*stage('Test') {
       parallel {
         stage('Static code analysis') {
@@ -24,7 +22,6 @@ pipeline {
         }
       }
     }*/
-
     stage('Deploy billing App') {
       steps {
         withCredentials(bindings: [
