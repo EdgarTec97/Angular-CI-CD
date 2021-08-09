@@ -21,7 +21,6 @@ pipeline {
     stage('Build') {
       steps { sh 'npm run-script build' }
     }
-  }
 
     stage('Deploy billing App') {
       steps {
