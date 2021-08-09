@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing-app-front-deployment-jenkis
+spec:
+  selector:
+    matchLabels:
+      app: billing-app-front-jenkis
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: billing-app-front-jenkis
+    spec:
+      containers:
+        - name: billing-app-front-jenkis
+          image: edgarcv99/angular-devops
+          ports:
+            - containerPort: 80
+              name: billingappbport
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: billing-app-front-service-jenkis
+  labels:
+    app: billing-app-front-jenkis
+spec:
+  ports:
+    - name: billing-app-front-jenkis
+      port: 80
+      nodePort: 30780
+  #type: LoadBalancer
+  type: NodePort
+  selector:
+    app: billing-app-back-jenkis
