@@ -1,10 +1,17 @@
 pipeline {
   agent {
-    docker { image 'node:latest' }
+    docker { image 'node:10-alpine' }
   }
   stages {
-    stage('Install') {
-      steps { sh 'npm install' }
+    stage('Restore') {
+        steps {
+            sh 'npm install'
+        }
+    }
+    stage('Build') {
+        steps {
+            sh 'npm run-script build'
+        }
     }
 
     /*stage('Test') {
@@ -17,10 +24,6 @@ pipeline {
         }
       }
     }*/
-
-    stage('Build') {
-      steps { sh 'npm run-script build' }
-    }
 
     stage('Deploy billing App') {
       steps {
