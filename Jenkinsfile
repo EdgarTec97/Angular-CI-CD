@@ -1,5 +1,12 @@
 pipeline {
-  agent {
+  agent any
+  stages {
+    stage('clone repository') {
+      steps {
+        sh '''git --version'''
+      }
+    }
+  /*agent {
     docker { 
       image 'node:12.16.2'
     } 
@@ -12,7 +19,7 @@ pipeline {
         sh 'npm run build'
       }
     }
-    /*stage('Test') {
+    stage('Test') {
       parallel {
         stage('Static code analysis') {
             steps { sh 'npm run-script lint' }
