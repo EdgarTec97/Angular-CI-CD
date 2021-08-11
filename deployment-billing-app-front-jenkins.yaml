@@ -17,7 +17,7 @@ spec:
           image: edgarcv99/angular-devops
           ports:
             - containerPort: 80
-              name: billingappbport
+              name: billingappbfrontport
 ---
 kind: Service
 apiVersion: v1
@@ -33,4 +33,4 @@ spec:
   #type: LoadBalancer
   type: NodePort
   selector:
-    app: billing-app-back-jenkis
+    app: billing-app-front-jenkis
