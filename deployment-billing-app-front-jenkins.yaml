@@ -17,7 +17,7 @@ spec:
           image: edgarcv99/angular-devops
           ports:
             - containerPort: 80
-              name: billingappbfrontport
+              name: billingappfport
 ---
 kind: Service
 apiVersion: v1
